@@ -17,9 +17,11 @@
             <p>Esse planejamento de treino segue uma estrutura conhecida como <strong>Bro Split</strong>.</p>
             <h5>Push &rarr; Pull &rarr; Legs &rarr; Repeat</h5>
         </div>
-        <div class="card">
+        <div class="card challenge">
             <h3>🔥Seu Desafio</h3>
             <p>Complete todos seus exercícios e acompanhe seu progresso ao longo do caminho.</p>
+            <p>Você aceita?</p>
+            <button class="card-button">Comece &rarr;</button>
         </div>
 
     </section>
@@ -28,4 +30,21 @@
 
 <style scoped>
 
+    #welcome,
+    .challenge,  
+    .benefits{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #welcome{
+
+        gap: 1.5rem;
+    }
+    .benefits{
+        gap: 0.5rem;
+    }
+    .challenge{
+        gap: 0.25rem;
+    }
 </style>
