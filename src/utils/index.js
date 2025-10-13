@@ -423,3 +423,17 @@ export const descricoesExercicios = {
     "Elevação lateral com halteres": "Em pé, braços ao lado do corpo, eleve os halteres lateralmente até a altura dos ombros, trabalhando deltoides.",
     "Encolhimento no cabo": "Puxe os ombros para cima mantendo braços esticados, fortalecendo trapézio."
 };
+
+
+export const gymHealthFacts = [
+    "Dormir de 7 a 9 horas ajuda na recuperação muscular e no equilíbrio hormonal.",
+    "Consumir proteína suficiente (1,6–2,2g por kg de peso corporal) ajuda na reparação e crescimento muscular.",
+    "Manter-se hidratado melhora o desempenho nos treinos e auxilia na entrega de nutrientes.",
+    "O consumo moderado de cafeína pode aumentar o foco, força e resistência durante os exercícios.",
+    "Gorduras saudáveis apoiam a produção hormonal e fornecem energia de longo prazo.",
+    "Alimentos ricos em fibras ajudam na digestão e a manter um físico magro.",
+    "Caminhar diariamente melhora a saúde cardiovascular e auxilia na recuperação em dias de descanso.",
+    "Meditação ou exercícios de respiração podem reduzir o estresse e melhorar a recuperação e o foco.",
+    "Um aquecimento adequado aumenta o fluxo sanguíneo e reduz o risco de lesões.",
+    "Pular dias de descanso pode levar ao excesso de treino, fadiga e estagnação nos resultados."
+]
