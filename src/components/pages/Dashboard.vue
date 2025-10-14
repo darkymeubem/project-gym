@@ -17,8 +17,8 @@ const todayFacts = gymHealthFacts[randomNumber];
                 <p class="tip"><strong>Daily tip</strong><br> {{ todayFacts }}</p>
             </div>
             <button>Start workout &rarr;</button>
-            <Grid />
         </div>
+        <Grid />
     </section>
 </template>
 

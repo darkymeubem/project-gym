@@ -1,10 +1,11 @@
+<script setup>
+    import { programaTreino } from '../../utils';
+</script>
+
 <template>
 
 </template>
 
-<script setup>
-
-</script>
 
 
 <style scoped>
