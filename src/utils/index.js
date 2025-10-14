@@ -53,7 +53,7 @@ export const programaTreino = {
     },
     4: {  // Puxar (Pull)
         aquecimento: [
-            { nome: "Segura deltóide posterior inclinada", series: 2, repeticoes: 20 },
+            { nome: "Deltóide posterior inclinada", series: 2, repeticoes: 20 },
             { nome: "Pull ups escapulares", series: 2, repeticoes: 20 }
         ],
         treino: [
