@@ -2,6 +2,7 @@
     import { programaTreino, descricoesExercicios } from '../../utils';
     import ModalPortal from '../ModalPortal.vue';
     import { computed, ref } from 'vue'
+    const workoutType = ['Push', 'Pull', 'Legs']
 
     //desestruturou a props nesses objetos
     const {data, selectedWorkout} = defineProps({
@@ -36,10 +37,10 @@
     </ModalPortal>
     <div class ="plan-card card">
         <div class =plan-card-header>
-            <p>Day {{ selectedWorkout < 9 ? '0' + selectedWorkout : selectedWorkout }}</p>
+            <p>Day {{ selectedWorkout < 9 ? '0' + (selectedWorkout + 1) : (selectedWorkout + 1) }}</p>
             <i class="fa-solid fa-dumbbell"></i>
         </div>
-        <h2>{{ 'Push' }} Workout</h2>
+        <h2>{{ workoutType[selectedWorkout % 3] }} Workout</h2>
     </div>
 
     <div class="workout-grid">
@@ -85,7 +86,7 @@
     </div>
     <div class="card workout-btn">
         <button @click="handleSaveWorkout"> Save & Exit <i class="fa-solid fa-save"></i></button>
-        <button :disabled="isWorkoutComplete" @click="handleSaveWorkout"> Complete <i class="fa-solid fa-check"></i></button>
+        <button :disabled="!isWorkoutComplete" @click="handleSaveWorkout"> Complete <i class="fa-solid fa-check"></i></button>
     </div>
 </section>
 </template>

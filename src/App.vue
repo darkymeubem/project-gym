@@ -23,7 +23,7 @@
     const isWorkoutComplete = computed(() => {
         const currWorkout = data.value?.[selectedWorkout.value]
         if(!currWorkout){ return false} //guard clause to exit function
-
+        
         const isCompleteCheck = Object.values(currWorkout).every(ex => !!ex);
         console.log('ISCOMPLETE: ', isCompleteCheck)
         return isCompleteCheck
@@ -63,6 +63,13 @@
         selectedWorkout.value = -1;
 
     }
+
+    function handleResetPlan(){
+        selectedDisplay.value = 2;
+        selectedWorkout.value = -1;
+        data.value = defaultData;
+        localStorage.removeItem('workouts'); 
+    }
 </script>
 
 <template>
@@ -70,7 +77,7 @@
         <!-- PAGE 1 -->
         <Welcome :handleChangeDisplay="handleChangeDisplay" v-if="selectedDisplay == 1"/>
         <!-- PAGE 2 -->
-        <Dashboard :handleSelectedWorkout="handleSelectedWorkout" v-if="selectedDisplay == 2"/>
+        <Dashboard :handleResetPlan="handleResetPlan" :firstIncompleteWorkoutIndex="firstIncompleteWorkoutIndex" :handleSelectedWorkout="handleSelectedWorkout" v-if="selectedDisplay == 2"/>
         <!-- PAGE 3 -->
         <Workout :handleSaveWorkout="handleSaveWorkout" :data="data" :selectedWorkout="selectedWorkout" :isWorkoutComplete="isWorkoutComplete" v-if="programaTreino?.[selectedWorkout]"/>
     </Layout>

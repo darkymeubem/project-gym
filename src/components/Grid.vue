@@ -3,7 +3,9 @@
     import { programaTreino } from '../utils';
     
     defineProps({
-        handleSelectedWorkout: Function
+        handleSelectedWorkout: Function,
+        firstIncompleteWorkoutIndex: Number,
+        handleResetPlan: Function
     })
 
     const workoutType = ['Push', 'Pull', 'Legs']
@@ -12,7 +14,7 @@
 
 <template>
     <section id="grid">
-        <button disabled="" @click="() => handleSelectedWorkout(index)" v-for="value,index in Object.keys(programaTreino)" :key="index" class ="card-button plan-card">
+        <button :disabled="index > 0 && index > firstIncompleteWorkoutIndex " @click="() => handleSelectedWorkout(index)" v-for="value,index in Object.keys(programaTreino)" :key="index" class ="card-button plan-card">
             <div>
                 <p>Day {{ index + 1 }}</p>
                 <i class = "fa-solid fa-dumbbell" v-if="index % 3 ==0"></i>
@@ -20,6 +22,10 @@
                 <i class = "fa-solid fa-bolt" v-if="index % 3 ==2"></i>
             </div>
             <h3>{{ workoutType[index % 3] }}</h3>
+        </button>
+        <button :disabled="firstIncompleteWorkoutIndex != -1" @click="handleResetPlan" class="card-button plan-card-reset">
+            <p>Reset</p>
+            <i class="fa-solid fa-rotate-right"></i>
         </button>
     </section>
 </template>
@@ -45,6 +51,14 @@
         display: flex;
         flex-direction: column;
     }
+
+    .plan-card-reset {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
     .plan-card div{
         display: flex;
         align-items: center;
