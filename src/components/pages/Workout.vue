@@ -1,27 +1,35 @@
 <script setup>
     import { programaTreino, descricoesExercicios } from '../../utils';
     import ModalPortal from '../ModalPortal.vue';
-    import { ref } from 'vue'
+    import { computed, ref } from 'vue'
 
-    let modal = ref(false);
-    const selectedWorkout = 4;
-    const { treino, aquecimento } = programaTreino[selectedWorkout];
-    const selectedExercises = 'Rosca direta no cabo';
-    const exerciseDescriptions = descricoesExercicios[selectedExercises];
-    const openModal = () => modal.value = true;
+    //desestruturou a props nesses objetos
+    const {data, selectedWorkout} = defineProps({
+        data: Object,
+        selectedWorkout: Number
+    })
     
+    const { treino, aquecimento } = programaTreino[selectedWorkout];
+    let selectedExercise = ref(null);
+    const exerciseDescriptions = computed(() => {
+        return descricoesExercicios[selectedExercise.value]
+    });
+    
+    function handleCloseModal(){
+        selectedExercise.value = null;
+    }
 </script>
 
 <template>
 <section id="workout-card">
-    <ModalPortal v-if="modal">
+    <ModalPortal :handleCloseModal ="handleCloseModal" v-if="selectedExercise">
         <div class="exercise-descriptions">
-            <h4> {{ selectedExercises }}</h4>
+            <h4> {{ selectedExercise }}</h4>
             <div>
                 <small>Descrição</small>
                 <p>{{ exerciseDescriptions }}</p>
             </div>
-            <button>Exit <i class ="fa-solid fa-xmark"></i></button>
+            <button @click="handleCloseModal">Fechar <i class ="fa-solid fa-xmark"></i></button>
         </div>
     </ModalPortal>
     <div class ="plan-card card">
@@ -40,7 +48,12 @@
         <div class="workout-grid-row" v-for="(w,wId) in aquecimento" :key="wId">
            <div class ="grid-name">
                 <p>{{ w.nome }}</p>
-                <button @click="openModal"><i class="fa-regular fa-circle-question"></i></button>
+                <button @click="() => {
+                    selectedExercise = w.nome
+
+                }">
+                    <i class="fa-regular fa-circle-question"></i>
+                </button>
             </div>
             <p>{{ w.series }}</p>
             <p>{{ w.repeticoes }}</p>
@@ -56,11 +69,16 @@
         <div class="workout-grid-row" v-for="(w,wId) in treino" :key="wId">
            <div class ="grid-name">
                 <p>{{ w.nome }}</p>
-                <button @click="openModal"><i class="fa-regular fa-circle-question"></i></button>
+                <button @click="() => {
+                    console.log('Cliquei nesse butao ', w.nome);
+                    selectedExercise = w.nome;
+                    }">
+                    <i class="fa-regular fa-circle-question"></i>
+                </button>
             </div>
             <p>{{ w.series }}</p>
             <p>{{ w.repeticoes }}</p>
-            <input class="grid-weights" placeholder="14kg" type="text" >
+            <input v-model="data[selectedWorkout][w.nome]"  class="grid-weights" placeholder="14kg" type="text" >
         </div>
     </div>
     <div class="card workout-btn">
@@ -147,7 +165,13 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        width: 100%;
     }
+
+    .exercise-descriptions h3{
+        text-transform: capitalize;
+    }
+    
     .exercise-descriptions button i {
         padding-left: 0.5rem;
     }
