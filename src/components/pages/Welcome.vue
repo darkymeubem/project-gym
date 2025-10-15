@@ -1,6 +1,9 @@
 
 <script setup>
-
+    defineProps({
+        handleChangeDisplay: Function
+    })
+    
 </script>
 
 <template>
@@ -21,7 +24,7 @@
             <h3>🔥Seu Desafio</h3>
             <p>Complete todos seus exercícios e acompanhe seu progresso ao longo do caminho.</p>
             <p>Você aceita?</p>
-            <button class="card-button">Comece &rarr;</button>
+            <button @click="() => handleChangeDisplay(2)" class="card-button">Comece &rarr;</button>
         </div>
 
     </section>

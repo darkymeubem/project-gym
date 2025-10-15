@@ -1,13 +1,18 @@
 
 <script setup>
     import { programaTreino } from '../utils';
+    
+    defineProps({
+        handleSelectedWorkout: Function
+    })
+
     const workoutType = ['Push', 'Pull', 'Legs']
 
 </script>
 
 <template>
     <section id="grid">
-        <button v-for="value,index in Object.keys(programaTreino)" :key="index" class ="card-button plan-card">
+        <button disabled="" @click="() => handleSelectedWorkout(index)" v-for="value,index in Object.keys(programaTreino)" :key="index" class ="card-button plan-card">
             <div>
                 <p>Day {{ index + 1 }}</p>
                 <i class = "fa-solid fa-dumbbell" v-if="index % 3 ==0"></i>
@@ -30,6 +35,12 @@
     #grid button {
         width: 100%;
     }
+
+    #grid button:disabled{
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+
     .plan-card{
         display: flex;
         flex-direction: column;

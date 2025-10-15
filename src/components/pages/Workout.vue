@@ -6,7 +6,9 @@
     //desestruturou a props nesses objetos
     const {data, selectedWorkout} = defineProps({
         data: Object,
-        selectedWorkout: Number
+        selectedWorkout: Number,
+        isWorkoutComplete: Boolean,
+        handleSaveWorkout: Function
     })
     
     const { treino, aquecimento } = programaTreino[selectedWorkout];
@@ -82,8 +84,8 @@
         </div>
     </div>
     <div class="card workout-btn">
-        <button> Save & Exit <i class="fa-solid fa-save"></i></button>
-        <button> Complete <i class="fa-solid fa-check"></i></button>
+        <button @click="handleSaveWorkout"> Save & Exit <i class="fa-solid fa-save"></i></button>
+        <button :disabled="isWorkoutComplete" @click="handleSaveWorkout"> Complete <i class="fa-solid fa-check"></i></button>
     </div>
 </section>
 </template>
