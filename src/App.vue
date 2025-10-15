@@ -3,7 +3,7 @@
     import Dashboard from './components/pages/Dashboard.vue'
     import Workout from './components/pages/Workout.vue'
     import Layout from './components/layouts/Layout.vue'
-    import { computed, ref } from 'vue'
+    import { computed, ref, onMounted } from 'vue'
     import { programaTreino } from './utils'
 
     const defaultData = {};
@@ -11,9 +11,9 @@
         const workoutData = programaTreino[workoutIdx]
         defaultData[workoutIdx] = {};
 
-        for(let e of workoutData.treino)[
+        for(let e of workoutData.treino){
             defaultData[workoutIdx][e.nome] = ''
-        ]
+        }
     }
 
     const selectedDisplay = ref(1);
@@ -56,7 +56,7 @@
 
     function handleSaveWorkout(){
         // save the current data snapshot to localStorage
-        localStorage.setItem('workoutData', JSON.stringify(data.value));
+        localStorage.setItem('workouts', JSON.stringify(data.value));
         //show the dashboard
         selectedDisplay.value = 2;
         //deselect a workout
@@ -70,10 +70,21 @@
         data.value = defaultData;
         localStorage.removeItem('workouts'); 
     }
+
+    onMounted(() => {
+        if(!localStorage) {return}
+        if(localStorage.getItem('workouts')){
+            const savedData = JSON.parse(localStorage.getItem('workouts'));
+            data.value = savedData;
+            selectedDisplay.value = 2;
+        }
+
+    })
+
 </script>
 
 <template>
-    <Layout>
+    <Layout v-model="selectedDisplay">
         <!-- PAGE 1 -->
         <Welcome :handleChangeDisplay="handleChangeDisplay" v-if="selectedDisplay == 1"/>
         <!-- PAGE 2 -->

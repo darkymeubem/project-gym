@@ -61,7 +61,7 @@
             <p>{{ w.series }}</p>
             <p>{{ w.repeticoes }}</p>
             <input class="grid-weights" placeholder="14kg" type="text" disabled>
-        </div>
+        </div>      
         <!---->
         <div class="workout-grid-line"></div>
         <!---->
@@ -121,6 +121,14 @@
     .workout-grid-row,
     .workout-grid-line{
         grid-column: span 7 / span 7;
+    }
+
+    .workout-grid-line{
+        margin: 0.5rem 0;
+        height: 3px;
+        border-radius: 2px;
+        background: gray;
+        opacity: 25%;
     }
 
     .grid-name{

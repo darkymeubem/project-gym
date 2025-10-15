@@ -1,11 +1,24 @@
 
 <script setup>
+    const props = defineProps({
+        modelValue: Number
+    })
 
+    const emit = defineEmits(['update:modelValue'])
+
+    function goHome() {
+        emit('update:modelValue', 1) //update value in parents
+    }
 </script>
 
 <template>
     <header>
-        <h1 style="color: green;opacity: 60%;">SMOLGRAM</h1>
+        <div class="head-screen">
+                <h1 style="color: green;opacity: 60%;">SMOLGRAM</h1>
+                <button @click="goHome">
+                    <i class="fa-solid fa-home"></i>
+                </button>
+        </div>
     </header>
     <main>
         <slot/>
@@ -23,6 +36,13 @@
 </template>
 
 <style scoped>
+    .head-screen{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     header,footer,main{
         padding: 1rem;
         width: 100%;
