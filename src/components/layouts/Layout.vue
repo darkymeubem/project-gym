@@ -14,7 +14,7 @@
 <template>
     <header>
         <div class="head-screen">
-                <h1 style="color: green;opacity: 60%;">SMOLGRAM</h1>
+                <h1 style="color: slateblue;opacity: 60%;">Gym Planner</h1>
                 <button @click="goHome">
                     <i class="fa-solid fa-home"></i>
                 </button>
